@@ -34,3 +34,7 @@ C:\Users\Craig\Documents\GitHub\Tombstones\Tombstones.UI.Web\Tombstones.UI.Web\b
 C:\Users\Craig\Documents\GitHub\Tombstones\Tombstones.UI.Web\Tombstones.UI.Web\obj\Debug\Tombstones.UI.Web.csprojResolveAssemblyReference.cache
 C:\Users\Craig\Documents\GitHub\Tombstones\Tombstones.UI.Web\Tombstones.UI.Web\obj\Debug\Tombstones.UI.Web.dll
 C:\Users\Craig\Documents\GitHub\Tombstones\Tombstones.UI.Web\Tombstones.UI.Web\obj\Debug\Tombstones.UI.Web.pdb
+C:\Users\Craig\Documents\GitHub\Tombstones\Tombstones.UI.Web\Tombstones.UI.Web\bin\Raven.Abstractions.dll
+C:\Users\Craig\Documents\GitHub\Tombstones\Tombstones.UI.Web\Tombstones.UI.Web\bin\Raven.Client.Lightweight.dll
+C:\Users\Craig\Documents\GitHub\Tombstones\Tombstones.UI.Web\Tombstones.UI.Web\bin\Raven.Abstractions.pdb
+C:\Users\Craig\Documents\GitHub\Tombstones\Tombstones.UI.Web\Tombstones.UI.Web\bin\Raven.Client.Lightweight.pdb
