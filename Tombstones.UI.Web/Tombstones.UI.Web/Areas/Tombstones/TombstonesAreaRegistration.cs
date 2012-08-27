@@ -14,10 +14,13 @@ namespace Tombstones.UI.Web.Areas.Tombstones
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
+            var namespaces = new string[] { "Tombstones.UI.Web.Areas.Tombstones.Controlers" };
+
             context.MapRoute(
-                "Tombstones_default",
-                "Tombstones/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                name: "Tombstones_default",
+                url: "Tombstones/{controller}/{action}/{id}",
+                defaults: new {controller = "Home",  action = "Index", id = UrlParameter.Optional },
+                namespaces: new [] { "Tombstones.UI.Web.Areas.Tombstones.Controllers"}
             );
         }
     }

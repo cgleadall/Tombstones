@@ -1,0 +1,13 @@
+﻿@model Tombstones.UI.Web.Areas.Tombstones.ViewModels.HomeIndex
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>Index</h2>
+
+@Model.Title
+<article >
+    <time>@Model.LastUpdateDate</time>
+    <p>this is an article.</p>
+</article>
