@@ -17,7 +17,7 @@ namespace Tombstones.UI.Web.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = "We have moved...";
+            ViewBag.Message = "News...";
 
             return View();
         }

@@ -6,8 +6,17 @@
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
             </hgroup>
+
+            <span class="button blue"><a href="@Tombstones.UI.Web.Areas.Tombstones.Controllers.HomeController.IndexLinkPath">Tombstones</a></span>
+            <span class="button orange"><a href="/">Burials</a></span>
+        </div>
+    </section>
+
+}
+
+<aside>
+                <h2>@ViewBag.Message</h2>
             <p>
                 We have recently moved, geographic locations and web hosting locations.
             </p>
@@ -15,16 +24,7 @@
                 As you can see the site is in the process of being re-designed. This means that not all 
                 functionality or datasets are avaliable. We are working to get this information back online.
             </p>
-        </div>
-    </section>
 
-}
-
-<aside>
-    <h3>Do some Research</h3>
-    <ul>
-        <li><a href="@Tombstones.UI.Web.Areas.Tombstones.Controllers.HomeController.IndexLinkPath">Tombstones</a></li>
-    </ul>
 </aside>
 
 <h3>We suggest the following:</h3>
