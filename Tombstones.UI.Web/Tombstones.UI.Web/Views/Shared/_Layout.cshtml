@@ -1,56 +1,68 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - Tombstones.bb</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/themes/base/css", "~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("Tombstones.bb", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @*@Html.Partial("_LoginPartial")*@
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li><a href="@Tombstones.UI.Web.Controllers.HomeController.IndexLinkPath">Home</a></li>
-                            <li><a href="@Tombstones.UI.Web.Controllers.HomeController.ResearchLinkPath">Research</a></li>
-                            <li><a href="@Tombstones.UI.Web.Controllers.HomeController.AboutLinkPath">About</a></li>
-                            <li><a href="@Tombstones.UI.Web.Controllers.HomeController.ContactLinkPath">Contact</a></li>
-                        </ul>
-                        @RenderSection("subNavigation", required: false)
-                    </nav>
-                </div>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Tombstones.bb</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/themes/base/css", "~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">@Html.ActionLink("Tombstones.bb", "Index", "Home")</p>
             </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - Tombstones.bb</p>
-                </div>
-                <div class="float-right">
-                    <ul id="social">
-@*                        <li><a href="http://facebook.com" class="facebook">Facebook</a></li>
-                        <li><a href="http://twitter.com" class="twitter">Twitter</a></li>*@
+            <div class="float-right">
+                <section id="login">
+                    @*@Html.Partial("_LoginPartial")*@
+                </section>
+                <nav>
+                    <ul id="menu">
+                        <li><a href="@Tombstones.UI.Web.Controllers.HomeController.IndexLinkPath">Home</a></li>
+                        <li><a href="@Tombstones.UI.Web.Controllers.HomeController.ResearchLinkPath">Research</a></li>
+                        <li><a href="@Tombstones.UI.Web.Controllers.HomeController.AboutLinkPath">About</a></li>
+                        <li><a href="@Tombstones.UI.Web.Controllers.HomeController.ContactLinkPath">Contact</a></li>
                     </ul>
-                </div>
+                    @RenderSection("subNavigation", required: false)
+                </nav>
             </div>
-        </footer>
+        </div>
+    </header>
+    <div id="body">
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="content-wrapper">
+                <span class="message-error">@ViewBag.ErrorMessage</span>
+            </div>
+        }
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="content-wrapper">
+                <span class="message-success">@ViewBag.SuccessMessage</span>
+            </div>
+        }
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - Tombstones.bb</p>
+            </div>
+            <div class="float-right">
+                <ul id="social">
+                    @*                        <li><a href="http://facebook.com" class="facebook">Facebook</a></li>
+                        <li><a href="http://twitter.com" class="twitter">Twitter</a></li>*@
+                </ul>
+            </div>
+        </div>
+    </footer>
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
 </html>

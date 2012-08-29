@@ -42,4 +42,12 @@
 	padding: .2em 1em .275em;
 }
 
+.button a
+{
+    text-decoration: none;
+}
 
+.disabled
+{
+    cursor: not-allowed;
+}

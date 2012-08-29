@@ -1,15 +1,18 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿
 @section featured {
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>@ViewBag.Title.</h1>
+                @if( ViewBag.SubTitle != null){
+                    <h2>@ViewBag.SubTitle</h2>
+                }
             </hgroup>
 
-            <span class="button blue"><a href="@Tombstones.UI.Web.Areas.Tombstones.Controllers.HomeController.IndexLinkPath">Tombstones</a></span>
-            <span class="button orange"><a href="/">Burials</a></span>
+            <a href="@Tombstones.UI.Web.Areas.Tombstones.Controllers.HomeController.IndexLinkPath"><span class="button blue">Tombstones</span></a>
+            <a href="/" title="Not available yet..."><span class="button orange disabled">Burials</span></a>
+            <a href="/" title="Not available yet..."><span class="button green disabled">Quakers</span></a>
+            <a href="/" title="Not available yet..."><span class="button gray disabled">Plantations</span></a>
         </div>
     </section>
 
