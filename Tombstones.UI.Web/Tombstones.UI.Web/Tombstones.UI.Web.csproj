@@ -149,6 +149,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Areas\Tombstones\Models\Tombstone.cs" />
+    <Compile Include="Models\PersonBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

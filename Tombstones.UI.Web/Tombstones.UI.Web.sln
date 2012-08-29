@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tombstones.UI.Web", "Tombstones.UI.Web\Tombstones.UI.Web.csproj", "{33DCE2EE-C5C6-47E0-B233-9385F15DBFDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelTests", "ModelTests\ModelTests.csproj", "{E10B9904-9230-49C1-8DA3-BE1D5A6F9117}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{33DCE2EE-C5C6-47E0-B233-9385F15DBFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33DCE2EE-C5C6-47E0-B233-9385F15DBFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33DCE2EE-C5C6-47E0-B233-9385F15DBFDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E10B9904-9230-49C1-8DA3-BE1D5A6F9117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E10B9904-9230-49C1-8DA3-BE1D5A6F9117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E10B9904-9230-49C1-8DA3-BE1D5A6F9117}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E10B9904-9230-49C1-8DA3-BE1D5A6F9117}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
