@@ -20,10 +20,12 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li><a href="@Tombstones.UI.Web.Controllers.HomeController.IndexLinkPath">Home</a></li>
+                            <li><a href="@Tombstones.UI.Web.Controllers.HomeController.ResearchLinkPath">Research</a></li>
+                            <li><a href="@Tombstones.UI.Web.Controllers.HomeController.AboutLinkPath">About</a></li>
+                            <li><a href="@Tombstones.UI.Web.Controllers.HomeController.ContactLinkPath">Contact</a></li>
                         </ul>
+                        @RenderSection("subNavigation", required: false)
                     </nav>
                 </div>
             </div>

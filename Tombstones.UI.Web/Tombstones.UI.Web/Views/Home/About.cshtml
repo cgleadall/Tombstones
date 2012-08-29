@@ -2,10 +2,17 @@
     ViewBag.Title = "About";
 }
 
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
     <h2>@ViewBag.Message</h2>
 </hgroup>
+            </div>
+</section>
+        }
 
 <article>
     <p>
@@ -21,9 +28,17 @@
 
 </article>
 
+
 <aside>
     <h3>Recent Activity</h3>
     <ul>
+        @if (ViewBag.RecentNews != null)
+        {
+            foreach (var news in ViewBag.RecentNews)
+            {
+                <li>@news</li>
+            }
+        }
         <li>Shell of new website launched</li>
     </ul>
 </aside>

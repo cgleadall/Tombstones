@@ -8,6 +8,7 @@ namespace Tombstones.UI.Web.Areas.Tombstones.Controllers
 {
     public class HomeController : Controller
     {
+        public static string IndexLinkPath = "/tombstones/";
         //
         // GET: /Tombstones/Home/
 
@@ -15,7 +16,7 @@ namespace Tombstones.UI.Web.Areas.Tombstones.Controllers
         {
             var model = new ViewModels.HomeIndex
             {
-                Title = "Tombstones Home",
+                Title = "Tombstones Research",
                 LastUpdateDate = DateTime.Now
             };
             return View(model);

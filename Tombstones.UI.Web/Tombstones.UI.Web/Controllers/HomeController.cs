@@ -9,6 +9,12 @@ namespace Tombstones.UI.Web.Controllers
 {
     public class HomeController : Controller
     {
+        public static string IndexLinkPath = "/";
+        public static string LastUpdateLinkPath = "/home/lastupdate/";
+        public static string ResearchLinkPath = "/home/research/";
+        public static string AboutLinkPath = "/home/about/";
+        public static string ContactLinkPath = "/home/contact/";
+
         public ActionResult Index()
         {
             ViewBag.Message = "We have moved...";
@@ -24,10 +30,19 @@ namespace Tombstones.UI.Web.Controllers
 
         }
 
+        public ActionResult Research()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "We provide geneological research assistance for the Caribbean.";
-
+            ViewBag.RecentNews = new List<string>{
+                "Added links to Research resources",
+                "Defined available data for Tombstones research",
+                "Create shell for new website on new platform"};
+            
             return View();
         }
 

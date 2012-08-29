@@ -4,10 +4,23 @@
     ViewBag.Title = Model.Title;
 }
 
-<h2>Index</h2>
+<h2>@Model.Title</h2>
 
-@Model.Title
 <article >
-    <time>@Model.LastUpdateDate</time>
-    <p>this is an article.</p>
+    <p>Data contained wihtin this catalog will contain the following headers. At first not all 
+        columns will be searchable. Additional search capabilities will be added over time.
+    </p>
+    <p>All date fields will be displayed in the following format: <em>YYYY Mmm dd</em></p>
+    <ul>
+        <li>Name</li>
+        <li>Date of Birth</li>
+        <li>Date of Death</li>
+        <li>Site</li>
+        <li>Search Fields</li>
+        <li>Photo taken</li>
+        <li>Found</li>
+        <li>Location on site</li>
+        <li>Inscription Notes</li>
+    </ul>
 </article>
+
