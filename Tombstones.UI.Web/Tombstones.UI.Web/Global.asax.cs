@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Raven.Client.Document;
+using Tombstones.UI.Web.Controllers;
 
 namespace Tombstones.UI.Web
 {
@@ -31,6 +32,39 @@ namespace Tombstones.UI.Web
             Store = new DocumentStore { ConnectionStringName = "RavenDB" };
 
             Store.Initialize();
+        }
+
+        protected void Application_Error()
+        {
+            var exception = Server.GetLastError();
+            var httpException = exception as HttpException;
+            Response.Clear();
+            Server.ClearError();
+            var routeData = new RouteData();
+            routeData.Values["controller"] = "errors";
+            routeData.Values["action"] = "general";
+            routeData.Values["exception"] = exception;
+            Response.StatusCode = 500;
+            if (httpException != null)
+            {
+                Response.StatusCode = httpException.GetHttpCode();
+                switch (Response.StatusCode)
+                {
+                    case 403:
+                        routeData.Values["action"] = "http403";
+                        break;
+                    case 404:
+                        routeData.Values["action"] = "http404";
+                        break;
+                    default:
+                        break;
+                }
+            }
+            Response.TrySkipIisCustomErrors = true;
+            IController errorsController = new ErrorsController();
+            HttpContextWrapper wrapper = new HttpContextWrapper(Context);
+            var rc = new RequestContext(wrapper, routeData);
+            errorsController.Execute(rc);
         }
     }
 }
