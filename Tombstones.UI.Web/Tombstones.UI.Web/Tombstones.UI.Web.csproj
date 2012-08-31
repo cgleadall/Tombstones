@@ -136,6 +136,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Research\Controllers\ResourcesController.cs" />
+    <Compile Include="Areas\Research\Models\Resource.cs" />
+    <Compile Include="Areas\Research\ResearchAreaRegistration.cs" />
     <Compile Include="Areas\Tombstones\Controllers\HomeController.cs" />
     <Compile Include="Areas\Tombstones\TombstonesAreaRegistration.cs" />
     <Compile Include="Areas\Tombstones\ViewModels\HomeIndex.cs" />
@@ -186,6 +189,10 @@
     <Content Include="Areas\Tombstones\Views\Web.config" />
     <Content Include="Areas\Tombstones\Views\Home\Index.cshtml" />
     <Content Include="Areas\Tombstones\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Research\Views\Web.config" />
+    <Content Include="Areas\Research\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Research\Views\Resources\All.cshtml" />
+    <Content Include="Areas\Research\Views\Resources\Index.cshtml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
@@ -258,6 +265,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Research\Views\Shared\" />
     <Folder Include="Areas\Tombstones\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
