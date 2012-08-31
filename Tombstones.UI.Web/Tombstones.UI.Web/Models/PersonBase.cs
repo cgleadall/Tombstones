@@ -17,10 +17,19 @@ namespace Tombstones.UI.Web.Models
         {
             get
             {
-                var result = string.Format(@"{0}, {1}", LastName.ToUpper(), FirstName.ToUpper());
-                if (!string.IsNullOrEmpty(OtherNames))
+                string result = string.Empty;
+
+                if (string.IsNullOrEmpty(LastName))
+                    return result;
+
+                result = string.Format(@"{0}", LastName.ToUpper());
+                if (!string.IsNullOrEmpty(FirstName))
                 {
-                    result += string.Format(@" {0}", OtherNames);
+                    result += @", " + FirstName;
+                    if (!string.IsNullOrEmpty(OtherNames))
+                    {
+                        result += string.Format(@" {0}", OtherNames);
+                    }
                 }
                 return result;
             }
