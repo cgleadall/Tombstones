@@ -1,0 +1,12 @@
+﻿@model Tombstones.UI.Web.Areas.Research.Models.ResourceCollection
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var item in Model.Resources)
+{
+    <span>@item.Title</span>
+}
