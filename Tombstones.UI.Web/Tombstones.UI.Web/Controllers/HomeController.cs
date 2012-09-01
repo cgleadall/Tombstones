@@ -7,7 +7,7 @@ using Tombstones.UI.Web.Models;
 
 namespace Tombstones.UI.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public static string IndexLinkPath = "/";
         public static string LastUpdateLinkPath = "/home/lastupdate/";

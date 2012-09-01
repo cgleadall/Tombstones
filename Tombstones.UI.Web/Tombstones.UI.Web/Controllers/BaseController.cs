@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-//using Raven.Client;
+using Raven.Client;
 
 namespace Tombstones.UI.Web.Controllers
 {
     public class BaseController : Controller
     {
-        //public IDocumentSession RavenSession { get; private set; }
+        public IDocumentSession RavenSession { get; private set; }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            //RavenSession = MvcApplication.Store.OpenSession();
+            RavenSession = MvcApplication.Store.OpenSession();
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -21,14 +21,14 @@ namespace Tombstones.UI.Web.Controllers
             if (filterContext.IsChildAction)
                 return;
 
-            //using (RavenSession)
-            //{
-            //    if (filterContext.Exception != null)
-            //        return;
+            using (RavenSession)
+            {
+                if (filterContext.Exception != null)
+                    return;
 
-            //    if (RavenSession != null)
-            //        RavenSession.SaveChanges();
-            //}
+                if (RavenSession != null)
+                    RavenSession.SaveChanges();
+            }
         }
     }
 }
