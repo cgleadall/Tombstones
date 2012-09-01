@@ -136,9 +136,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\Research\Controllers\ResourcesController.cs" />
-    <Compile Include="Areas\Research\Models\Resource.cs" />
-    <Compile Include="Areas\Research\ResearchAreaRegistration.cs" />
     <Compile Include="Areas\Tombstones\Controllers\HomeController.cs" />
     <Compile Include="Areas\Tombstones\TombstonesAreaRegistration.cs" />
     <Compile Include="Areas\Tombstones\ViewModels\HomeIndex.cs" />
@@ -147,6 +144,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ResourcesController.cs" />
     <Compile Include="Models\LastUpdateModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -154,6 +152,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Areas\Tombstones\Models\Tombstone.cs" />
     <Compile Include="Models\PersonBase.cs" />
+    <Compile Include="Models\Resource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -190,10 +189,6 @@
     <Content Include="Areas\Tombstones\Views\Web.config" />
     <Content Include="Areas\Tombstones\Views\Home\Index.cshtml" />
     <Content Include="Areas\Tombstones\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Research\Views\Web.config" />
-    <Content Include="Areas\Research\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Research\Views\Resources\All.cshtml" />
-    <Content Include="Areas\Research\Views\Resources\Index.cshtml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
@@ -263,10 +258,16 @@
     <Content Include="Views\Home\Research.cshtml" />
     <Content Include="Views\Errors\Http404.cshtml" />
     <Content Include="Views\Errors\Http403.cshtml" />
+    <Content Include="Views\Resources\Admin.cshtml" />
+    <Content Include="Views\Resources\Create.cshtml" />
+    <Content Include="Views\Errors\general.cshtml" />
+    <Content Include="Views\Resources\Details.cshtml" />
+    <Content Include="Views\Resources\Edit.cshtml" />
+    <Content Include="Views\Resources\AddAddress.cshtml" />
+    <Content Include="Views\Resources\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Research\Views\Shared\" />
     <Folder Include="Areas\Tombstones\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Tombstones.UI.Web.Models.Resource>
+@{
+    ViewBag.Title = "Research Resources";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@foreach (var resourceGrouping in Model.GroupBy(m => m.Country))
+{
+    <section class="clear-fix">    
+    <h3>@resourceGrouping.Key</h3>
+        @foreach (var resource in resourceGrouping)
+        {
+        <article>
+            <h4>@resource.Title</h4>
+            @foreach (var address in resource.Addresses)
+            {
+                <address>@address</address>
+            }
+        </article>
+        }
+    </section>
+
+    <div class="clear"></div>
+    <br />
+}

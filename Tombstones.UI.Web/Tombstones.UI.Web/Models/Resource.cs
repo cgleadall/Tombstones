@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
-namespace Tombstones.UI.Web.Areas.Research.Models
+namespace Tombstones.UI.Web.Models
 {
     public class Resource
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
+        [Required]
         public string Country { get; set; }
+        [Required]
         public string Title { get; set; }
         public IList<string> Addresses { get; set; }
 

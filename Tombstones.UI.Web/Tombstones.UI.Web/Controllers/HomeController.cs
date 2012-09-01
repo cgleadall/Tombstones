@@ -40,7 +40,7 @@ namespace Tombstones.UI.Web.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "We provide geneological research assistance for the Caribbean.";
+            ViewBag.Message = "We provide genealogical research assistance for the Caribbean.";
             ViewBag.RecentNews = new List<string>{
                 "Added links to Research resources",
                 "Defined available data for Tombstones research",

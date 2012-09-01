@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "general";
+}
+
+<h2>General Error</h2>
+
+@if(ViewBag.Values != null)
+{
+    var exception = ViewBag.Values["exception"] as Exception;
+    <p>@exception.Message</p>
+    <hr />
+    foreach (var item in ViewBag.Values)
+	{
+        <p>@item</p>
+	}
+}

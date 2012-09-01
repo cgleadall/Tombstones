@@ -30,6 +30,7 @@ namespace Tombstones.UI.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Store = new DocumentStore { ConnectionStringName = "RavenDB" };
+            Store.Conventions.IdentityPartsSeparator = "-";
 
             Store.Initialize();
         }

@@ -21,5 +21,10 @@ namespace Tombstones.UI.Web.Controllers
             return View();
         }
 
+        public ActionResult general()
+        {
+            ViewBag.Values = this.RouteData.Values;
+            return View();
+        }
     }
 }
