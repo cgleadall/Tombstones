@@ -265,6 +265,7 @@
     <Content Include="Views\Resources\Edit.cshtml" />
     <Content Include="Views\Resources\AddAddress.cshtml" />
     <Content Include="Views\Resources\Index.cshtml" />
+    <Content Include="Views\Resources\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

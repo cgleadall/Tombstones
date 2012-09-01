@@ -98,7 +98,7 @@ namespace Tombstones.UI.Web.Controllers
                 RavenSession.Store(model);
                 TempData.Add("NewObject", model);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             catch
             {
@@ -110,7 +110,7 @@ namespace Tombstones.UI.Web.Controllers
         public ActionResult AddAddress(string id)
         {
             if (string.IsNullOrEmpty(id))
-                return RedirectToAction("index");
+                return RedirectToAction("admin");
 
             Models.Resource model = RavenSession.Load<Models.Resource>(id.ToString());
 
@@ -156,7 +156,7 @@ namespace Tombstones.UI.Web.Controllers
             {
                 RavenSession.Store(model, model.Id);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("admin");
             }
             catch
             {
@@ -167,22 +167,24 @@ namespace Tombstones.UI.Web.Controllers
         //
         // GET: /Resources/Delete/5
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            var resource = RavenSession.Load<Models.Resource>(id);
+            return View(resource);
         }
 
         //
         // POST: /Resources/Delete/5
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                var resource = RavenSession.Load<Models.Resource>(id);
+                RavenSession.Delete<Models.Resource>(resource);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("admin");
             }
             catch
             {
