@@ -590,6 +590,18 @@ tr.pager td {
     padding: 0 0.25em 0 0;
 }
 
+.width150
+{
+    width: 150px;
+}
+.width200
+{
+    width: 200px;
+}
+.width300
+{
+    width: 300px;
+}
 
 /********************
 *   Mobile Styles   *
@@ -669,7 +681,7 @@ tr.pager td {
         padding-left: 10px;
     }
 
-    .featured .content-wrapper {
+    .featured .content-wrapper .button {
         padding: 10px;
     }
 
