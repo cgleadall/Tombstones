@@ -590,6 +590,14 @@ tr.pager td {
     padding: 0 0.25em 0 0;
 }
 
+.width75
+{
+    width: 75px;
+}
+.width80
+{
+    width: 80px;
+}
 .width150
 {
     width: 150px;
@@ -782,4 +790,9 @@ tr.pager td {
             padding-left: 0;
             text-indent: 0;
         }
+
+    h1 h2 h3 h4
+    {
+        font-size: smaller;
+    }
 }
