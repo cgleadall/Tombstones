@@ -7,6 +7,21 @@
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/themes/base/css", "~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-34485151-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+
 </head>
 <body>
     <header>
@@ -57,12 +72,21 @@
                 <ul id="social">
                         <li><a href="https://www.facebook.com/pages/Tombstones-Website/110316705786089" class="facebook">Facebook</a></li>
                         <li><a href="https://twitter.com/TombstonesWeb" class="twitter">Twitter</a></li>
+                        <li><div class="g-plusone" data-annotation="none" data-width="300"></div></li>
                 </ul>
             </div>
         </div>
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript">
+        (function () {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
