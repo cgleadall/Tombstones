@@ -1,0 +1,32 @@
+﻿@model Tombstones.UI.Web.ViewModels.FileUpload
+
+@{
+    ViewBag.Title = "Upload";
+}
+
+<h2>Upload</h2>
+
+<form action="@Tombstones.UI.Web.Controllers.FileManagerController.UploadLinkPath" method="post" enctype="multipart/form-data">
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>FileUpload</legend>
+        <span class="editor-label">File to upload: </span>
+        <input type="file" name="uploadedFile" id="uploadedFIle" />
+        
+        <br />
+        <span class="editor-label">Category</span>
+        @Html.DropDownListFor(m => m.SelectedFileCategory, Model.FileCategories)
+        <p>
+            <input type="submit" value="Upload" />
+        </p>
+    </fieldset>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

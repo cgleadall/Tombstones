@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                @if( ViewBag.SubTitle != null){
+                    <h2>@ViewBag.SubTitle</h2>
+                }
+            </hgroup>
+
+            Recently uploaded files:
+        </div>
+    </section>
+
+}
+
+<div class="content-wrapper">
+    list of all uploaded files...
+</div>
+
+<aside>
+    <ul>
+        <li><a href="@Tombstones.UI.Web.Controllers.FileManagerController.UploadLinkPath">Upload</a></li>
+    </ul>
+</aside>
+

@@ -139,6 +139,8 @@
     <Compile Include="Areas\Tombstones\Controllers\HomeController.cs" />
     <Compile Include="Areas\Tombstones\TombstonesAreaRegistration.cs" />
     <Compile Include="Areas\Tombstones\ViewModels\HomeIndex.cs" />
+    <Compile Include="Controllers\FileManagerController.cs" />
+    <Compile Include="ViewModels\FileUpload.cs" />
     <Content Include="Content\button.css" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -153,6 +155,7 @@
     <Compile Include="Areas\Tombstones\Models\Tombstone.cs" />
     <Compile Include="Models\PersonBase.cs" />
     <Compile Include="Models\Resource.cs" />
+    <Compile Include="Models\UploadedFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -266,6 +269,8 @@
     <Content Include="Views\Resources\AddAddress.cshtml" />
     <Content Include="Views\Resources\Index.cshtml" />
     <Content Include="Views\Resources\Delete.cshtml" />
+    <Content Include="Views\FileManager\Upload.cshtml" />
+    <Content Include="Views\FileManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -290,7 +295,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>61593</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:51270/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
