@@ -16,6 +16,11 @@ namespace Tombstones.UI.Web.Controllers
 
         public ActionResult Index()
         {
+            if (TempData["newFile"] != null)
+            {
+                ViewBag.NewFile = TempData["newFile"];
+            }
+
             return View();
         }
 
@@ -44,14 +49,15 @@ namespace Tombstones.UI.Web.Controllers
 
             string savedFilePath = Path.Combine(
                AppDomain.CurrentDomain.BaseDirectory,"App_Data", 
-                "uploads");
+                "uploads",
+                model.SelectedFileCategory.ToLower());
                
                string savedFileName = Path.Combine(savedFilePath,
                hpf.FileName);
 
             if( System.IO.File.Exists(savedFileName) )
             {
-                ViewBag.InfoMessage = string.Format("That filename already exists: {0}", 
+                ViewBag.ErrorMessage = string.Format("That filename already exists: {0}", 
                     savedFileName.Substring(savedFileName.IndexOf("App_Data") + "App_Data".Length+1));
                 return View(model);
             }
@@ -65,11 +71,16 @@ namespace Tombstones.UI.Web.Controllers
                 System.IO.Directory.CreateDirectory(savedFilePath);
                 hpf.SaveAs(savedFileName);
             }
-            model.FileBeingUploaded.FileName = savedFileName;
+            model.FileBeingUploaded.FullPath = savedFileName;
+            model.FileBeingUploaded.FileName = hpf.FileName;
 
             RavenSession.Store(model.FileBeingUploaded);
+            if (TempData.ContainsKey("newFile"))
+                TempData["newFile"] = model.FileBeingUploaded;
+            else
+                TempData.Add("newFile", model.FileBeingUploaded);
 
-            return View(model);
+            return RedirectToAction("index");
         }
     }
 }

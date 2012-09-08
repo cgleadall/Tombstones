@@ -10,6 +10,7 @@ namespace Tombstones.UI.Web.Models
     {
         public string Id { get; set; }
         public string FileName { get; set; }
+        public string FullPath { get; set; }
         public string Category { get; set; }
         public DateTime UploadedAt { get; set; }
         public DateTime? ImportedAt { get; set; }

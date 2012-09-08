@@ -14,6 +14,12 @@
             </hgroup>
 
             Recently uploaded files:
+            @if(ViewBag.NewFile != null)
+            {
+                var newFile = (Tombstones.UI.Web.Models.UploadedFile)ViewBag.NewFile;
+                <span>@newFile.FileName</span><br />
+                <span>@newFile.FullPath</span>
+            }
         </div>
     </section>
 
