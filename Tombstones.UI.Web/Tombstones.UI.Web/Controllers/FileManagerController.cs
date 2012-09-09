@@ -149,7 +149,7 @@ namespace Tombstones.UI.Web.Controllers
                 var stopWatch = System.Diagnostics.Stopwatch.StartNew();
                 foreach (var item in model.ReadRowData(uploadedFile.FullPath))
                 {
-                    var quaker = Models.Quaker.Create(item);
+                    var quaker = Models.Quaker.Create(item, uploadedFile.Id);
 
                     if( quaker != null )
                     {
@@ -173,6 +173,75 @@ namespace Tombstones.UI.Web.Controllers
 #else
             return RedirectToRoute("Default");
 #endif
+        }
+
+
+        public static string UndoImportLinkPath = "/filemanager/undoimport/";
+        [HttpGet]
+        public ActionResult UndoImport(string id)
+        {
+            ViewModels.FileManagerUndoImport model;
+            if (string.IsNullOrEmpty(id))
+                return RedirectToAction("index");
+
+            var uploadedFile = RavenSession.Load<Models.UploadedFile>(id);
+            model = ViewModels.FileManagerUndoImport.Create(uploadedFile.Id);
+            model.RemainingRecords = RavenSession.Query<Models.Quaker>().Count();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult UndoImport(ViewModels.FileManagerUndoImport model)
+        {
+            if (!model.ConfirmRemoval)
+            {
+                return View(model);
+            }
+
+            var stopWatch = System.Diagnostics.Stopwatch.StartNew();
+
+            var recordsToDelete = RavenSession.Query<Models.Quaker>().Where(q => q.UploadedFileId == model.UploadedFileId)
+                .Take(model.BatchSize);
+
+            int numberOfRecordsToDelete = recordsToDelete.Count();
+            if (numberOfRecordsToDelete == 0)
+            {
+                var uploadedFile = RavenSession.Load<Models.UploadedFile>(model.UploadedFileId);
+                uploadedFile.ImportedAt = null;
+                uploadedFile.NumberOfRecords = null;
+
+                model.RemainingRecords = 0;
+                model.ConfirmRemoval = false;
+                return RedirectToAction("index");
+                //return View(model);
+            }
+            foreach (var record in recordsToDelete)
+            {
+                RavenSession.Delete<Models.Quaker>(record);
+            }
+
+            if (model.BatchSize <= model.RemainingRecords)
+                model.RemainingRecords = model.RemainingRecords - model.BatchSize;
+            else
+                model.RemainingRecords = 0;
+
+
+            if (model.RemainingRecords == 0)
+            {
+                var uploadedFile = RavenSession.Load<Models.UploadedFile>(model.UploadedFileId);
+                uploadedFile.ImportedAt = null;
+                uploadedFile.NumberOfRecords = null;
+
+                model.ConfirmRemoval = false;
+            }
+            stopWatch.Stop();
+
+            model.ExecutionTimeSpan = stopWatch.Elapsed;
+
+            ViewBag.SuccessMessage = string.Format("Remaining records {0}... ", numberOfRecordsToDelete);
+            ViewBag.DisbalePageTracking = true;
+            return View(model);
         }
 
     }

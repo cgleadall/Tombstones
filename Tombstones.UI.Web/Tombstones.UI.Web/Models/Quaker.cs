@@ -16,11 +16,12 @@ namespace Tombstones.UI.Web.Models
         public string Area { get; set; }
         public string Note { get; set; }
         public string Source { get; set; }
+        public string UploadedFileId { get; set; }
 
-        public static Quaker Create(object[] itemArray)
+        public static Quaker Create(object[] itemArray, string uploadedFileId)
         {
             var result = new Quaker();
-            if(itemArray.Length == 7)
+            if (itemArray.Length == 7)
             {
                 result.Surname = itemArray[0].ToString();
                 result.FirstName = itemArray[1].ToString();
@@ -29,6 +30,11 @@ namespace Tombstones.UI.Web.Models
                 result.Area = itemArray[4].ToString();
                 result.Note = itemArray[5].ToString();
                 result.Source = itemArray[6].ToString();
+                result.UploadedFileId = uploadedFileId;
+            }
+            else
+            {
+                throw new Exception("Item Array does not have enough items. Only " + itemArray.Length + " of 7 were found.");
             }
             return result;
         }

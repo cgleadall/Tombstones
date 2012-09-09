@@ -46,6 +46,7 @@
                     <th>Filename</th>
                     <th>Uploaded on</th>
                     <th>Imported on</th>
+                    <th></th>
                 </tr>
             </thead>
             @foreach (var uploaded in Model.UploadedFiles)
@@ -69,6 +70,14 @@
                                 <span title="This file is no longer stored on the server and cannot be imported to the database">can't import</span>
                             }
                         }
+                    </td>
+                    <td>
+                        @if (uploaded.ImportedAt.HasValue)
+                        {
+                            var url = string.Format("{0}{1}", Tombstones.UI.Web.Controllers.FileManagerController.UndoImportLinkPath,
+                                uploaded.Id);
+                        <a href="@url" title="Remove all records from this file.">Undo Import</a>
+                            }
                     </td>
                 </tr>
             }
