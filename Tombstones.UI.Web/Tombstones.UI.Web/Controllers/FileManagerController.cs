@@ -20,8 +20,12 @@ namespace Tombstones.UI.Web.Controllers
             {
                 ViewBag.NewFile = TempData["newFile"];
             }
+            var uploadedFiles = RavenSession.Query<Models.UploadedFile>()
+                .OrderBy(f => f.FileName);
 
-            return View();
+            var model = ViewModels.FileManagerIndex.Create(Server.MapPath("~/App_Data/uploads/"));
+
+            return View(model);
         }
 
         public static string UploadLinkPath = "/filemanager/upload";

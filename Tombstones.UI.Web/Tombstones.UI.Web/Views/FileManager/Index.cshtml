@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Tombstones.UI.Web.ViewModels.FileManagerIndex
+
+@{
     ViewBag.Title = "Index";
 }
 
@@ -27,6 +29,13 @@
 
 <div class="content-wrapper">
     list of all uploaded files...
+    @if (Model.FilesInUploadFolder != null && Model.FilesInUploadFolder.Count() > 0)
+    {
+        foreach (var file in Model.FilesInUploadFolder)
+        {
+            <span class="file">@file.Name</span><span class="length">@file.Length</span><br />
+        }
+    }
 </div>
 
 <aside>
