@@ -10,7 +10,6 @@ namespace Tombstones.UI.Web.Controllers
     public class FileManagerController : BaseController
     {
 
-#if DEBUG
         //
         // GET: /FileManager/
 
@@ -18,6 +17,7 @@ namespace Tombstones.UI.Web.Controllers
 
         public ActionResult Index()
         {
+#if DEBUG
             if (TempData["newFile"] != null)
             {
                 ViewBag.NewFile = TempData["newFile"];
@@ -41,20 +41,28 @@ namespace Tombstones.UI.Web.Controllers
             }
 
             return View(model);
+#else
+            return RedirectToRoute("Default");
+#endif
         }
 
         public static string UploadLinkPath = "/filemanager/upload/";
         [HttpGet]
         public ActionResult Upload()
         {
+#if DEBUG
             var model = new ViewModels.FileUpload();
 
             return View(model);
+#else
+            return RedirectToRoute("Default");
+#endif
         }
 
         [HttpPost]
         public ActionResult Upload(ViewModels.FileUpload model, FormCollection formdata)
         {
+#if DEBUG
             model.FileBeingUploaded = new Models.UploadedFile {
                 Category = model.SelectedFileCategory,
                 UploadedAt = DateTime.Now};
@@ -100,12 +108,16 @@ namespace Tombstones.UI.Web.Controllers
                 TempData.Add("newFile", model.FileBeingUploaded);
 
             return RedirectToAction("index");
+#else
+            return RedirectToRoute("Default");
+#endif
         }
 
         public static string ImportLinkPath = "/filemanager/import/";
         [HttpGet]
         public ActionResult Import(string id)
         {
+#if DEBUG
             var uploadId = id;
             ViewModels.FileManagerImport model = null;
 
@@ -119,11 +131,15 @@ namespace Tombstones.UI.Web.Controllers
             else
                 RedirectToAction("index");
             return View(model);
+#else
+            return RedirectToRoute("Default");
+#endif
         }
 
         [HttpPost]
         public ActionResult Import(string id, FormCollection formData)
         {
+#if DEBUG
             var uploadedFile = RavenSession.Load<Models.UploadedFile>(id);
             var model = ViewModels.FileManagerImport.Create(uploadedFile);
             
@@ -154,7 +170,10 @@ namespace Tombstones.UI.Web.Controllers
                 return View(model);
             }
             return RedirectToAction("index");
-        }
+#else
+            return RedirectToRoute("Default");
 #endif
+        }
+
     }
 }
