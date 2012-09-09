@@ -1,0 +1,44 @@
+﻿@model Tombstones.UI.Web.ViewModels.FileManagerUndoImport
+@{
+    ViewBag.Title = "UndoImport";
+}
+
+<h2>UndoImport</h2>
+
+
+@using (@Html.BeginForm("UndoImport", "FileManager", FormMethod.Post, new { id = "undoImportForm" }))
+{
+    @Html.HiddenFor(m => m.UploadedFileId);
+    @Html.HiddenFor(m => m.RemainingRecords);
+    
+    <span class="label width100">Batch Size:</span>
+    <span>@Html.TextBoxFor(m => m.BatchSize)</span><br />
+
+    <span class="label width100">Confirm Delete action.</span>
+    <span>@Html.CheckBoxFor(m => m.ConfirmRemoval)</span>
+    <br />
+    <input type="submit" id="undoImportSubmit" name="undoImport" value="Undo Import" />
+    
+    <br />
+}
+@section scripts
+{
+    @if (Model.RemainingRecords != 0)
+    {
+        <script type="text/javascript">
+            $().ready(function undoImportReady() {
+
+                var form = $("#undoImportForm");
+                var confirmRemoval = $("#ConfirmRemoval");
+
+                if (confirmRemoval[0].checked) {
+                    $("#undoImportSubmit").addClass("disabled");
+                    var timeoutId;
+                    //timeoutId = setTimeout(function () { form.submit(); clearTimeout(timeoutId); }, 1000);
+                    form.submit();
+                }
+            });
+
+        </script>
+    }
+}
