@@ -1,0 +1,45 @@
+﻿@model Tombstones.UI.Web.ViewModels.FileManagerImport
+@{
+    ViewBag.Title = "Import";
+}
+
+<h2>Import</h2>
+
+@*<form action="@string.Format(@"{0}/{1}",
+ Tombstones.UI.Web.Controllers.FileManagerController.ImportLinkPath, Model.UploadFileId)" method="post">
+*@
+
+@using(Html.BeginForm("Import", "FileManager", FormMethod.Post))
+{
+
+<h3>File Headers</h3>
+<table>
+    <thead>
+        <tr>
+            @foreach (var header in Model.Headers)
+            {
+                <th>@header</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model.SampleData)
+        {
+            <tr>
+                @foreach (var item in row)
+                {
+                    <td>@item</td>
+		 
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+
+    
+<input type="checkbox" name="BeginImport" value="BeginImport" id="importCheckBox" /><label for="importCheckBox">I want to start the import.</label>
+    <input type="submit" name="Import" value="Import" />
+@*</form>*@
+
+}

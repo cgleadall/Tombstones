@@ -140,6 +140,9 @@
     <Compile Include="Areas\Tombstones\TombstonesAreaRegistration.cs" />
     <Compile Include="Areas\Tombstones\ViewModels\HomeIndex.cs" />
     <Compile Include="Controllers\FileManagerController.cs" />
+    <Compile Include="Models\Quaker.cs" />
+    <Compile Include="ViewModels\FileManagerImport.cs" />
+    <Compile Include="ViewModels\FileManagerIndex.cs" />
     <Compile Include="ViewModels\FileUpload.cs" />
     <Content Include="Content\button.css" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -271,6 +274,7 @@
     <Content Include="Views\Resources\Delete.cshtml" />
     <Content Include="Views\FileManager\Upload.cshtml" />
     <Content Include="Views\FileManager\Index.cshtml" />
+    <Content Include="Views\FileManager\Import.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

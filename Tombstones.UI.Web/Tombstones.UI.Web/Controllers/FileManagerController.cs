@@ -24,11 +24,15 @@ namespace Tombstones.UI.Web.Controllers
                 .OrderBy(f => f.FileName);
 
             var model = ViewModels.FileManagerIndex.Create(Server.MapPath("~/App_Data/uploads/"));
+            foreach (var dbFile in uploadedFiles)
+            {
+                model.UploadedFiles.Add(dbFile);
+            }
 
             return View(model);
         }
 
-        public static string UploadLinkPath = "/filemanager/upload";
+        public static string UploadLinkPath = "/filemanager/upload/";
         [HttpGet]
         public ActionResult Upload()
         {
@@ -84,6 +88,42 @@ namespace Tombstones.UI.Web.Controllers
             else
                 TempData.Add("newFile", model.FileBeingUploaded);
 
+            return RedirectToAction("index");
+        }
+
+        public static string ImportLinkPath = "/filemanager/import/";
+        [HttpGet]
+        public ActionResult Import(string id)
+        {
+            var uploadId = id;
+            ViewModels.FileManagerImport model = null;
+
+            Models.UploadedFile uploadFile = RavenSession.Load<Models.UploadedFile>(uploadId);
+
+            if (uploadFile != null && !uploadFile.ImportedAt.HasValue)
+            {
+                model = ViewModels.FileManagerImport.Create(uploadFile);
+                ViewBag.Ready = true;
+            }
+            else
+                RedirectToAction("index");
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Import(string id, FormCollection formData)
+        {
+            
+            if (!string.IsNullOrEmpty(formData["BeginImport"]))
+            {
+            }
+            else
+            {
+                var uploadedFile = RavenSession.Load<Models.UploadedFile>(id);
+                var model = ViewModels.FileManagerImport.Create(uploadedFile);
+                model.ReadHeaders();
+                return View(model);
+            }
             return RedirectToAction("index");
         }
     }

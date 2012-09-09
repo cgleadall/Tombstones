@@ -1,5 +1,4 @@
 ﻿@model Tombstones.UI.Web.ViewModels.FileManagerIndex
-
 @{
     ViewBag.Title = "Index";
 }
@@ -10,13 +9,14 @@
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>@ViewBag.Title.</h1>
-                @if( ViewBag.SubTitle != null){
+                @if (ViewBag.SubTitle != null)
+                {
                     <h2>@ViewBag.SubTitle</h2>
                 }
             </hgroup>
 
             Recently uploaded files:
-            @if(ViewBag.NewFile != null)
+            @if (ViewBag.NewFile != null)
             {
                 var newFile = (Tombstones.UI.Web.Models.UploadedFile)ViewBag.NewFile;
                 <span>@newFile.FileName</span><br />
@@ -28,13 +28,51 @@
 }
 
 <div class="content-wrapper">
-    list of all uploaded files...
+    list of all uploaded files on filesystem...<br />
     @if (Model.FilesInUploadFolder != null && Model.FilesInUploadFolder.Count() > 0)
     {
         foreach (var file in Model.FilesInUploadFolder)
         {
-            <span class="file">@file.Name</span><span class="length">@file.Length</span><br />
+        <span class="file">@file.Name</span><span class="length">@file.Length</span><br />
         }
+    }
+    <hr />
+    <span>Files from DB</span><br />
+    @if (Model.UploadedFiles != null && Model.UploadedFiles.Count() > 0)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Filename</th>
+                    <th>Uploaded on</th>
+                    <th>Imported on</th>
+                </tr>
+            </thead>
+            @foreach (var uploaded in Model.UploadedFiles)
+            {
+                <tr>
+                    <td>@uploaded.FileName</td>
+                    <td>@uploaded.UploadedAt.ToString()</td>
+                    <td>
+                        @if (uploaded.ImportedAt.HasValue)
+                        {
+                            @uploaded.ImportedAt.Value.ToString();
+                        }
+                        else
+                        {
+                            if (@Model.FilesInUploadFolder.Count(f => f.Name == @uploaded.FileName) == 1)
+                            {
+                                <a href="/filemanager/import/@uploaded.Id">Import now</a>
+                            }
+                            else
+                            {
+                                <span title="This file is no longer stored on the server and cannot be imported to the database">can't import</span>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
     }
 </div>
 
