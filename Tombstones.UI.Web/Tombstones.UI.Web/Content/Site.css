@@ -406,7 +406,10 @@ fieldset {
         font-weight: 600;
         padding: 7px;
     }
-
+form .label
+{
+    display: inline-block;
+}
 /* ajax login/registration dialog */
 .ui-dialog {
     font-family: inherit;

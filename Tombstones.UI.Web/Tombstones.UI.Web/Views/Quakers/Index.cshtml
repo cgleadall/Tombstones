@@ -1,9 +1,7 @@
-﻿@*@model  Tombstones.UI.Web.ViewModels.QuakersIndex*@
-
+﻿@model  Tombstones.UI.Web.ViewModels.QuakersIndex
 @{
     ViewBag.Title = "Quakers";
 }
-
 @section featured {
     <section class="featured">
         <div class="content-wrapper">
@@ -14,22 +12,39 @@
     </section>
 }
 
+<aside>
+    <h3>Information:</h3>
+    <p>There are @Model.NumberOfRecords records.</p>
+    @if (Model.SearchResults != null && Model.SearchResults.Count() > 0)
+    {
+        <p>Your search has returned @Model.SearchResults.Count results.</p>
+    }
+</aside>
 
 <div class="content-wrapper">
-            <form action="@Tombstones.UI.Web.Controllers.QuakersController.IndexLinkPath" method="post">
-            <span class="label width100">Surname:</span>
-            <input type="text" name="Surname" autocomplete="on" autofocus="autofocus" id="surname" />
-                <input type="checkbox" name="surnameStartsWith" value="surnameStartWith" id="surnameStartsWith" />
-                <label for="surnameStartsWith">starts with</label><br />
-            <span class="label width100">Firstname:</span>
-            <input type="text" name="Firstname" autocomplete="on" autofocus="autofocus" id="firstname" /><br />
-
-            <input type="submit" name="Search" value="search" />
-            </form>
-
-    @if (ViewBag.Data != null)
+    @using (Html.BeginForm())
     {
-        List<Tombstones.UI.Web.Models.Quaker> data = (List<Tombstones.UI.Web.Models.Quaker>)ViewBag.Data;
+        @Html.ValidationSummary()
+        <br />
+        @Html.HiddenFor(mbox => mbox.NumberOfRecords)
+        <span class="label width80">@Html.DisplayNameFor(m => m.Surname)</span>
+        @Html.TextBoxFor(m => m.Surname)
+        @Html.CheckBoxFor(m => m.SurnameStartsWith)
+        <span class="label">@Html.DisplayNameFor(m => m.SurnameStartsWith)</span>
+        <br />
+        
+        <span class="label width80">@Html.DisplayNameFor(m => m.Firstname)</span>
+        @Html.TextBoxFor(m => m.Firstname)
+        @Html.CheckBoxFor(m => m.FirstnameStartsWith)
+        <span class="label">@Html.DisplayNameFor(m => m.FirstnameStartsWith)</span>
+        <br />
+        
+        <input type="submit" name="Search" id="search" value="Search" />
+    }
+    @if (Model.SearchResults != null)
+    {
+        if (Model.SearchResults.Count > 0)
+        {
         <table>
             <thead>
                 <tr>
@@ -39,7 +54,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var record in data)
+                @foreach (var record in Model.SearchResults)
                 {
                     var url = string.Format(Tombstones.UI.Web.Controllers.QuakersController.DetailsLinkPathFormat, record.Id);
                     <tr>
@@ -50,5 +65,6 @@
                 }
             </tbody>
         </table>
+        }
     }
 </div>

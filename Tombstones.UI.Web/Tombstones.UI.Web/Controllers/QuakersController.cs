@@ -16,44 +16,65 @@ namespace Tombstones.UI.Web.Controllers
         public ActionResult Index()
         {
             var model = new ViewModels.QuakersIndex();
-
-            model.NumberOfRecords = RavenSession.Query<Models.Quaker>().Count();
-
-            return View();
+            
+            if (Session["searchModel"] == null)
+            {
+                model.NumberOfRecords = RavenSession.Query<Models.Quaker>().Count();
+            }
+            else
+            {
+                model = (ViewModels.QuakersIndex)Session["searchModel"];
+            }
+            return View(model);
         }
 
         // POST: /Quakers/
         [HttpPost]
-        public ActionResult Index(FormCollection formData)
+        public ActionResult Index(ViewModels.QuakersIndex model)
         {
-            string surname;
-            string firstname;
+            ViewBag.ErrorMessage = string.Empty;
+
             IQueryable<Models.Quaker> query;
             query = RavenSession.Query<Models.Quaker>();
 
-            if( formData["Surname"] != null && !string.IsNullOrEmpty(formData["Surname"]) )
+            if (model != null && !string.IsNullOrEmpty(model.Surname))
             {
-                var startsWith = !string.IsNullOrEmpty(formData["surnameStartsWith"]);
-                surname = formData["Surname"];
-                if (startsWith)
+                if (model.SurnameStartsWith)
                 {
-                    query = query.Where(q => q.Surname.StartsWith(surname));
+                    if (model.Surname.Length >= 3)
+                        query = query.Where(q => q.Surname.StartsWith(model.Surname));
+                    else
+                        ViewBag.ErrorMessage = "You must have at least 3 letters to do a 'starts with' Surname search";
                 }
                 else
                 {
-                    query = query.Where(q => q.Surname == surname);
+                    query = query.Where(q => q.Surname == model.Surname);
                 }
             }
-            if( formData["Firstname"] != null && !string.IsNullOrEmpty(formData["Firstname"]) )
-            {    
-                firstname = formData["Firstname"];
-                query = query.Where( q => q.FirstName == firstname);
+            if (model != null && !string.IsNullOrEmpty(model.Firstname))
+            {
+                if (model.FirstnameStartsWith)
+                {
+                    if (model.Firstname.Length >= 2)
+                        query = query.Where(q => q.FirstName.StartsWith(model.Firstname));
+                    else
+                        ViewBag.ErrorMessage += "You must have at least 2 letters to do a 'starts with' Firstname search";
+                }
+                else
+                {
+                    query = query.Where(q => q.FirstName == model.Firstname);
+                }
             }
 
-            var data = query.ToList();
-            ViewBag.Data = data;
+            if (string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            {
+                model.SearchResults = query.ToList();
+                Session.Add("searchModel", model);
+            }
 
-            return View();
+            if (model != null && model.SearchResults != null && model.SearchResults.Count == 0)
+                ViewBag.ErrorMessage = "Your search returned no results.";
+            return View(model);
         }
 
         //
