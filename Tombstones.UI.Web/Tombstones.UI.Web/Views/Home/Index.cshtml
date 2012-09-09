@@ -1,32 +1,34 @@
-﻿
-@section featured {
+﻿@section featured {
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>@ViewBag.Title.</h1>
-                @if( ViewBag.SubTitle != null){
+                @if (ViewBag.SubTitle != null)
+                {
                     <h2>@ViewBag.SubTitle</h2>
                 }
             </hgroup>
 
             <a href="@Tombstones.UI.Web.Areas.Tombstones.Controllers.HomeController.IndexLinkPath"><span class="button blue width75">Tombstones</span></a>
             <a href="/" title="Not available yet..."><span class="button orange disabled width75">Burials</span></a>
-            <a href="/" title="Not available yet..."><span class="button green disabled width75">Quakers</span></a>
+            <a href="@Tombstones.UI.Web.Controllers.QuakersController.IndexLinkPath" title="Search Quaker names in Barbados"><span class="button green width75">Quakers</span></a>
             <a href="/" title="Not available yet..."><span class="button gray disabled width75">Plantations</span></a>
+            <h3>Quakers list is now avaliable.</h3>
         </div>
     </section>
 
 }
 
 <aside>
-                <h2>@ViewBag.Message</h2>
-            <p>
-                We have recently moved, geographic locations and web hosting locations.
-            </p>
-            <p>
-                As you can see the site is in the process of being re-designed. This means that not all 
+    <h2>@ViewBag.Message</h2>
+    <p>The Quakers list is now available for searching.</p>
+    <p>
+        We have recently moved, geographic locations and web hosting locations.
+    </p>
+    <p>
+        As you can see the site is in the process of being re-designed. This means that not all 
                 functionality or datasets are avaliable. We are working to get this information back online.
-            </p>
+    </p>
 
 </aside>
 
@@ -35,7 +37,7 @@
     <li class="one">
         <h5>Check back often</h5>
         While we are updating our site new features and datasets will be added frequently.
-        </li>
+    </li>
     <li class="two">
         <h5>Don't fret.</h5>
         We will make a recovery...</li>

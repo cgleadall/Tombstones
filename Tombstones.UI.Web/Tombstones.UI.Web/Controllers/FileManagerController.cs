@@ -9,6 +9,8 @@ namespace Tombstones.UI.Web.Controllers
 {
     public class FileManagerController : BaseController
     {
+
+#if DEBUG
         //
         // GET: /FileManager/
 
@@ -153,5 +155,6 @@ namespace Tombstones.UI.Web.Controllers
             }
             return RedirectToAction("index");
         }
+#endif
     }
 }
