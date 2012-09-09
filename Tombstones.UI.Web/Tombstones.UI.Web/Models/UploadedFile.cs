@@ -15,6 +15,7 @@ namespace Tombstones.UI.Web.Models
         public DateTime UploadedAt { get; set; }
         public DateTime? ImportedAt { get; set; }
         public string ImportedBy { get; set; }
+        public int? NumberOfRecords { get; set; }
 
     }
 }

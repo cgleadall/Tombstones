@@ -1,0 +1,54 @@
+﻿@*@model  Tombstones.UI.Web.ViewModels.QuakersIndex*@
+
+@{
+    ViewBag.Title = "Quakers";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup>
+                <h2>@ViewBag.Title</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+
+
+<div class="content-wrapper">
+            <form action="@Tombstones.UI.Web.Controllers.QuakersController.IndexLinkPath" method="post">
+            <span class="label width100">Surname:</span>
+            <input type="text" name="Surname" autocomplete="on" autofocus="autofocus" id="surname" />
+                <input type="checkbox" name="surnameStartsWith" value="surnameStartWith" id="surnameStartsWith" />
+                <label for="surnameStartsWith">starts with</label><br />
+            <span class="label width100">Firstname:</span>
+            <input type="text" name="Firstname" autocomplete="on" autofocus="autofocus" id="firstname" /><br />
+
+            <input type="submit" name="Search" value="search" />
+            </form>
+
+    @if (ViewBag.Data != null)
+    {
+        List<Tombstones.UI.Web.Models.Quaker> data = (List<Tombstones.UI.Web.Models.Quaker>)ViewBag.Data;
+        <table>
+            <thead>
+                <tr>
+                    <th>Surname</th>
+                    <th>Firstname</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in data)
+                {
+                    var url = string.Format(Tombstones.UI.Web.Controllers.QuakersController.DetailsLinkPathFormat, record.Id);
+                    <tr>
+                        <td><a href="@url" >@record.Surname</a></td>
+                        <td>@record.FirstName</td>
+                        <td>@record.Date</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

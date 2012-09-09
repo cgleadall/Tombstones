@@ -16,6 +16,7 @@ namespace Tombstones.UI.Web.ViewModels
         public string Category { get; set; }
         public ICollection<string> Headers { get; set; }
         public ICollection<object[]> SampleData { get; set; }
+        
         public int ImportFromRow { get; set; }
 
         protected FileManagerImport()
@@ -27,6 +28,19 @@ namespace Tombstones.UI.Web.ViewModels
         public void ReadHeaders()
         {
             Headers = GetFileHeaders(FullPath);
+        }
+
+        public IEnumerable<object[]> ReadRowData(string fullPath)
+        {
+            DataColumnCollection headers;
+            DataRowCollection rows;
+
+            ReadFileData(fullPath, out headers, out rows);
+            foreach (DataRow row in rows)
+            {
+                yield return row.ItemArray;
+            }
+            yield break;
         }
 
         public static FileManagerImport Create(Models.UploadedFile uploadFile)

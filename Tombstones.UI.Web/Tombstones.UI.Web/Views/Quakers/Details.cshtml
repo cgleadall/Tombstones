@@ -1,0 +1,43 @@
+﻿@model Tombstones.UI.Web.Models.Quaker
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h2>@Html.DisplayFor(m=> m.Surname)</h2>
+                @if( !string.IsNullOrEmpty(Model.FirstName) ) {
+                <h2>, @Html.DisplayFor(m => m.FirstName)</h2>
+                }
+            </hgroup>
+            <table>
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.Date)</th>
+                        <th class="width150">@Html.DisplayNameFor(m => m.Relationship)</th>
+                        <th>@Html.DisplayNameFor(m => m.Area)</th>
+                        <th class="width150">@Html.DisplayNameFor(m => m.Note)</th>
+                        <th>@Html.DisplayNameFor(m => m.Source)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Html.DisplayFor(m => m.Date)</td>
+                        <td>@Html.DisplayFor(m => m.Relationship)</td>
+                        <td>@Html.DisplayFor(m => m.Area)</td>
+                        <td>@Html.DisplayFor(m => m.Note)</td>
+                        <td>@Html.DisplayFor(m => m.Source)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

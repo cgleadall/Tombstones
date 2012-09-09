@@ -20,6 +20,15 @@ namespace Tombstones.UI.Web.Controllers
             {
                 ViewBag.NewFile = TempData["newFile"];
             }
+
+            if (TempData["RecordsAdded"] != null && TempData["ImportTimeSpan"] != null)
+            {
+                ViewBag.RecordsAdded = (int)TempData["RecordsAdded"];
+                ViewBag.ImportTimeSpan = (TimeSpan)TempData["ImportTimeSpan"];
+
+                ViewBag.SuccessMessage = string.Format("Imported '{0}' records in {1:0.00} seconds", ViewBag.RecordsAdded, ((TimeSpan)ViewBag.ImportTimeSpan).TotalSeconds);
+            }
+
             var uploadedFiles = RavenSession.Query<Models.UploadedFile>()
                 .OrderBy(f => f.FileName);
 
@@ -113,14 +122,32 @@ namespace Tombstones.UI.Web.Controllers
         [HttpPost]
         public ActionResult Import(string id, FormCollection formData)
         {
+            var uploadedFile = RavenSession.Load<Models.UploadedFile>(id);
+            var model = ViewModels.FileManagerImport.Create(uploadedFile);
             
             if (!string.IsNullOrEmpty(formData["BeginImport"]))
             {
+                int i=0;
+                var stopWatch = System.Diagnostics.Stopwatch.StartNew();
+                foreach (var item in model.ReadRowData(uploadedFile.FullPath))
+                {
+                    var quaker = Models.Quaker.Create(item);
+
+                    if( quaker != null )
+                    {
+                        RavenSession.Store(quaker);
+                    }
+                    i++;
+                }
+                stopWatch.Stop();
+                uploadedFile.ImportedAt = DateTime.Now;
+                uploadedFile.NumberOfRecords = i;
+                
+                TempData.Add("RecordsAdded", i);
+                TempData.Add("ImportTimeSpan", stopWatch.Elapsed);
             }
             else
             {
-                var uploadedFile = RavenSession.Load<Models.UploadedFile>(id);
-                var model = ViewModels.FileManagerImport.Create(uploadedFile);
                 model.ReadHeaders();
                 return View(model);
             }

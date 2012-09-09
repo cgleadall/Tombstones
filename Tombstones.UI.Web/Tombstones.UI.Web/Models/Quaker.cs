@@ -8,7 +8,7 @@ namespace Tombstones.UI.Web.Models
     public class Quaker
     {
         //Surname	First name	Date	Relationship	Area	Note	Source
-
+        public string Id { get; set; }
         public string Surname { get; set; }
         public string FirstName { get; set; }
         public string Date { get; set; }
