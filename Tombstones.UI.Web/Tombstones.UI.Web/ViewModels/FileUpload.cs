@@ -20,7 +20,7 @@ namespace Tombstones.UI.Web.ViewModels
         {
             FileCategories = new List<SelectListItem>();
 
-            foreach (var typeName in new string[] { "Burials", "Plantations", "Quakers", "Tombstones"})
+            foreach (var typeName in new string[] { "Burials", "Ministers", "Plantations", "Quakers", "Tombstones"})
             {
                 FileCategories.Add(new SelectListItem { Text = typeName, Value = typeName });
             }

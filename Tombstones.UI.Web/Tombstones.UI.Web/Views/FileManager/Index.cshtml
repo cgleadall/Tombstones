@@ -15,9 +15,9 @@
                 }
             </hgroup>
 
-            Recently uploaded files:
             @if (ViewBag.NewFile != null)
             {
+                <text>The file that you just uploaded.</text>
                 var newFile = (Tombstones.UI.Web.Models.UploadedFile)ViewBag.NewFile;
                 <span>@newFile.FileName</span><br />
                 <span>@newFile.FullPath</span>
@@ -28,12 +28,14 @@
 }
 
 <div class="content-wrapper">
-    list of all uploaded files on filesystem...<br />
+    <h3>Files that can be Imported.</h3>
     @if (Model.FilesInUploadFolder != null && Model.FilesInUploadFolder.Count() > 0)
     {
         foreach (var file in Model.FilesInUploadFolder)
         {
-        <span class="file">@file.Name</span><span class="length">@file.Length</span><br />
+        <div class="roundedbox">
+            <span class="width200 block">@file.Name</span><span class="width80 block">@file.Length</span>
+        </div>
         }
     }
     <hr />
@@ -63,11 +65,11 @@
                         {
                             if (@Model.FilesInUploadFolder.Count(f => f.Name == @uploaded.FileName) == 1)
                             {
-                                <a href="/filemanager/import/@uploaded.Id">Import now</a>
+                            <a href="/filemanager/import/@uploaded.Id">Import now</a>
                             }
                             else
                             {
-                                <span title="This file is no longer stored on the server and cannot be imported to the database">can't import</span>
+                            <span title="This file is no longer stored on the server and cannot be imported to the database">can't import</span>
                             }
                         }
                     </td>
@@ -76,8 +78,8 @@
                         {
                             var url = string.Format("{0}{1}", Tombstones.UI.Web.Controllers.FileManagerController.UndoImportLinkPath,
                                 uploaded.Id);
-                        <a href="@url" title="Remove all records from this file.">Undo Import</a>
-                            }
+                            <a href="@url" title="Remove all records from this file.">Undo Import</a>
+                        }
                     </td>
                 </tr>
             }

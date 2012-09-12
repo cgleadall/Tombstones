@@ -63,29 +63,31 @@ namespace Tombstones.UI.Web.Controllers
         public ActionResult Upload(ViewModels.FileUpload model, FormCollection formdata)
         {
 #if DEBUG
-            model.FileBeingUploaded = new Models.UploadedFile {
+            model.FileBeingUploaded = new Models.UploadedFile
+            {
                 Category = model.SelectedFileCategory,
-                UploadedAt = DateTime.Now};
+                UploadedAt = DateTime.Now
+            };
 
             HttpPostedFileBase hpf = Request.Files["uploadedFile"] as HttpPostedFileBase;
-            if ( hpf == null || hpf.ContentLength == 0)
+            if (hpf == null || hpf.ContentLength == 0)
             {
                 ViewBag.ErrorMessage = "That file contained no data...";
                 return ViewBag(model);
             }
 
             string savedFilePath = Path.Combine(
-               AppDomain.CurrentDomain.BaseDirectory,"App_Data", 
+               AppDomain.CurrentDomain.BaseDirectory, "App_Data",
                 "uploads",
                 model.SelectedFileCategory.ToLower());
-               
-               string savedFileName = Path.Combine(savedFilePath,
-               hpf.FileName);
 
-            if( System.IO.File.Exists(savedFileName) )
+            string savedFileName = Path.Combine(savedFilePath,
+            hpf.FileName);
+
+            if (System.IO.File.Exists(savedFileName))
             {
-                ViewBag.ErrorMessage = string.Format("That filename already exists: {0}", 
-                    savedFileName.Substring(savedFileName.IndexOf("App_Data") + "App_Data".Length+1));
+                ViewBag.ErrorMessage = string.Format("That filename already exists: {0}",
+                    savedFileName.Substring(savedFileName.IndexOf("App_Data") + "App_Data".Length + 1));
                 return View(model);
             }
             try
@@ -93,7 +95,7 @@ namespace Tombstones.UI.Web.Controllers
                 hpf.SaveAs(savedFileName);
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 System.IO.Directory.CreateDirectory(savedFilePath);
                 hpf.SaveAs(savedFileName);
@@ -142,25 +144,39 @@ namespace Tombstones.UI.Web.Controllers
 #if DEBUG
             var uploadedFile = RavenSession.Load<Models.UploadedFile>(id);
             var model = ViewModels.FileManagerImport.Create(uploadedFile);
-            
+
             if (!string.IsNullOrEmpty(formData["BeginImport"]))
             {
-                int i=0;
+                int i = 0;
                 var stopWatch = System.Diagnostics.Stopwatch.StartNew();
                 foreach (var item in model.ReadRowData(uploadedFile.FullPath))
                 {
-                    var quaker = Models.Quaker.Create(item, uploadedFile.Id);
-
-                    if( quaker != null )
+                    switch (model.Category.ToLower())
                     {
-                        RavenSession.Store(quaker);
+                        case "quakers":
+                            var quaker = Models.Quaker.Create(item, uploadedFile.Id);
+                            if (quaker != null)
+                            {
+                                RavenSession.Store(quaker);
+                                i++;
+                            }
+                            break;
+                        case "ministers":
+                            var minister = Models.Minister.Create(item, uploadedFile.Id);
+                            if (minister != null)
+                            {
+                                RavenSession.Store(minister);
+                                i++;
+                            }
+                            break;
+                        default:
+                            break;
                     }
-                    i++;
                 }
                 stopWatch.Stop();
                 uploadedFile.ImportedAt = DateTime.Now;
                 uploadedFile.NumberOfRecords = i;
-                
+
                 TempData.Add("RecordsAdded", i);
                 TempData.Add("ImportTimeSpan", stopWatch.Elapsed);
             }

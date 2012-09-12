@@ -109,8 +109,10 @@ namespace Tombstones.UI.Web.ViewModels
         protected static DataRowCollection ReadDataFromXLSFile(string filename, string sheetname, out DataColumnCollection headers)
         {
             var con =
-                new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filename +
-                                    ";Extended Properties=Excel 8.0");
+                //new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\"" + filename +
+                //                    "\";Extended Properties=Excel 8.0");
+            new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"" + filename +
+                                "\";Extended Properties=Excel 12.0");
             var myDataSet = new DataSet();
             con.Open();
             //Create Dataset and fill with imformation from the Excel Spreadsheet for easier reference

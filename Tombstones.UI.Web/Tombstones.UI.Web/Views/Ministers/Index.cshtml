@@ -1,0 +1,71 @@
+﻿@model Tombstones.UI.Web.ViewModels.MinistersIndex
+
+@{
+    ViewBag.Title = "Ministers";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup>
+                <h2>@ViewBag.Title</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+
+<aside>
+    <h3>Information:</h3>
+    <p>There are @Model.NumberOfRecords records.</p>
+    @if (Model.SearchResults != null && Model.SearchResults.Count() > 0)
+    {
+        <p>Your search has returned @Model.SearchResults.Count results.</p>
+    }
+</aside>
+
+<div class="content-wrapper">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+        <br />
+        @Html.HiddenFor(mbox => mbox.NumberOfRecords)
+        <span class="label width80">@Html.DisplayNameFor(m => m.Lastname)</span>
+        @Html.TextBoxFor(m => m.Lastname)
+        @Html.CheckBoxFor(m => m.LastnameStartsWith)
+        <span class="label">@Html.DisplayNameFor(m => m.LastnameStartsWith)</span>
+        <br />
+        
+        <span class="label width80">@Html.DisplayNameFor(m => m.Firstname)</span>
+        @Html.TextBoxFor(m => m.Firstname)
+        @Html.CheckBoxFor(m => m.FirstnameStartsWith)
+        <span class="label">@Html.DisplayNameFor(m => m.FirstnameStartsWith)</span>
+        <br />
+        
+        <input type="submit" name="Search" id="search" value="Search" />
+    }
+    @if (Model.SearchResults != null)
+    {
+        if (Model.SearchResults.Count > 0)
+        {
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Dates</th>
+                    <th>Source</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model.SearchResults)
+                {
+                    var url = string.Format(Tombstones.UI.Web.Controllers.MinistersController.DetailsLinkPathFormat, record.Id);
+                    <tr>
+                        <td><a href="@url" >@record.CombinedName</a></td>
+                        <td>@record.Dates</td>
+                        <td>@record.Source</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        }
+    }
+</div>

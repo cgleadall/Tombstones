@@ -24,7 +24,8 @@ namespace Tombstones.UI.Web.ViewModels
 
             foreach (DirectoryInfo directory in directoryInfo.EnumerateDirectories())
             {
-                result.FilesInUploadFolder = GetFilesFromDirectory(directory.FullName).ToList<FileInfo>();
+                GetFilesFromDirectory(directory.FullName).ToList().ForEach(fi =>
+                        result.FilesInUploadFolder.Add(fi));
             }
             return result;
         }
