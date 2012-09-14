@@ -20,6 +20,11 @@ namespace Tombstones.UI.Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/tablesorter").Include(
+                        "~/Scripts/jquery.metadata.js", 
+                        "~/Scripts/jquery.tablesorter.min.js",
+                        "~/Scripts/jquery.tablesorter.pager.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css",
                 "~/Content/button.css", 
                 "~/Content/colours.css"));
@@ -37,6 +42,9 @@ namespace Tombstones.UI.Web
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            bundles.Add(new StyleBundle("~/Content/themes/tablesorter").Include(
+                "~/Content/themes/tablesorter/blue/style.css"));
 
         }
     }

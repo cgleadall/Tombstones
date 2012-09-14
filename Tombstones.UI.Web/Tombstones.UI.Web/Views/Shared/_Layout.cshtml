@@ -6,7 +6,10 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/themes/base/css", "~/Content/css")
+    @RenderSection("headCss", required:false )
+    
     @Scripts.Render("~/bundles/modernizr")
+
     @if (ViewBag.DisbalePageTracking != null && ViewBag.DisbalePageTracking == false)
     {
         <script type="text/javascript">

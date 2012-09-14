@@ -19,6 +19,8 @@ namespace Tombstones.UI.Web.ViewModels
         public bool FirstnameStartsWith { get; set; }
 
         public List<Models.Minister> SearchResults { get; set; }
+        public int StartAt { get; set; }
+
         public int NumberOfRecords { get; set; }
     }
 }

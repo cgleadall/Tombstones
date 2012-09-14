@@ -61,18 +61,25 @@ namespace Tombstones.UI.Web.Controllers
                 }
                 else
                 {
-                    query = query.Where(q => q.FirstName == model.Firstname || q.OtherNames.Contains(model.Firstname));
+                    query = query.Where(q => q.FirstName == model.Firstname || q.OtherNames == model.Firstname);
                 }
             }
 
             if (string.IsNullOrEmpty(ViewBag.ErrorMessage))
             {
+                query = query.OrderBy(q => q.CombinedName);
                 model.SearchResults = query.ToList();
                 Session.Add("searchModel", model);
             }
 
             if (model != null && model.SearchResults != null && model.SearchResults.Count == 0)
                 ViewBag.ErrorMessage = "Your search returned no results.";
+
+            if (model.SearchResults != null && model.SearchResults.Count() > 50)
+            {
+                ViewBag.ErrorMessage = string.Format("Your search criteria returned {0} records. This is too many records, please be more specific", model.SearchResults.Count());
+                model.SearchResults = new List<Models.Minister>();
+            }
             return View(model);
         }
 

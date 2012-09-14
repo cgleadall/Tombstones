@@ -631,6 +631,11 @@ tr.pager td {
     width: 300px;
 }
 
+span.small
+{
+    font-size: smaller;
+}
+
 /********************
 *   Mobile Styles   *
 ********************/

@@ -46,10 +46,12 @@
     {
         if (Model.SearchResults.Count > 0)
         {
-        <table>
+        <table id="searchResults" class="tablesorter">
             <thead>
-                <tr>
-                    <th>Name</th>
+                <tr class="roundedBox">
+                    <th>Lastname</th>
+                    <th>Firstname</th>
+                    <th>Other names</th>
                     <th>Dates</th>
                     <th>Source</th>
                 </tr>
@@ -59,13 +61,50 @@
                 {
                     var url = string.Format(Tombstones.UI.Web.Controllers.MinistersController.DetailsLinkPathFormat, record.Id);
                     <tr>
-                        <td><a href="@url" >@record.CombinedName</a></td>
+                        <td>@record.LastName</td>
+                        <td>@record.FirstName</td>
+                        <td>@record.OtherNames</td>
                         <td>@record.Dates</td>
                         <td>@record.Source</td>
                     </tr>
                 }
             </tbody>
         </table>
+        <div id="pager" class="pager">
+	<form>
+		<img src="~/images/first.png" class="first"/>
+		<img src="~/images/prev.png" class="prev"/>
+		<input type="text" class="pagedisplay"/>
+		<img src="~/images/next.png" class="next"/>
+		<img src="~/images/last.png" class="last"/>
+		<select class="pagesize">
+			<option value="5">5</option>
+			<option selected="selected" value="10">10</option>
+			<option value="20">20</option>
+		</select> <br />
+        <span class="width200 small">current page / total pages</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="width150 small">records per page</span>
+	</form>
+</div>
         }
     }
 </div>
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/tablesorter");
+
+    <script type="text/javascript">
+        $().ready(function ministerIndexReady() {
+            $("#searchResults")
+                .tablesorter({ widthFixed: true, widgets: ['zebra'] })
+                .tablesorterPager({ container: $("#pager") })
+            ;
+        });
+    </script>
+}
+
+@section headCss{
+    @Styles.Render("~/Content/themes/tablesorter")
+}

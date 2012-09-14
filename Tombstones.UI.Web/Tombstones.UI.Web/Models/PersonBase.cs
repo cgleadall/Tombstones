@@ -2,17 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace Tombstones.UI.Web.Models
 {
     public class PersonBase
     {
+        [Display(Name="First name")]
         public string FirstName { get; set; }
+
+        [Display(Name="Other names", Description="Names between First and Last")]
         public string OtherNames { get; set; }
+
+        [Display(Name="Last name")]
         public string LastName { get; set; }
+
+        [Display(Name="Date of Birth")]
         public string DateOfBirth { get; set; }
+
+        [Display(Name="Date of Death")]
         public string DateOfDeath { get; set; }
 
+        [Display(Name="Full name", Description="LASTNAME, Firstname Other names")]
         public string CombinedName
         {
             get
