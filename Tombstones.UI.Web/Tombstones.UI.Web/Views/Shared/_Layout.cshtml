@@ -10,9 +10,9 @@
     
     @Scripts.Render("~/bundles/modernizr")
 
-    @if (ViewBag.DisbalePageTracking != null && ViewBag.DisbalePageTracking == false)
+@*    @if (ViewBag.DisbalePageTracking != null && ViewBag.DisbalePageTracking == false)
     {
-        <script type="text/javascript">
+        *@<script type="text/javascript">
 
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-34485151-1']);
@@ -25,7 +25,7 @@
             })();
 
         </script>
-    }
+ @*   }*@
 </head>
 <body>
     <header>
