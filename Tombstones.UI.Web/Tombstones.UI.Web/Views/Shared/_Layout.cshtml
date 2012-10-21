@@ -31,7 +31,8 @@
     <header>
         <div class="content-wrapper">
             <div class="float-left">
-                <p class="site-title">@Html.ActionLink("Tombstones.bb", "Index", "Home")</p>
+                <p class="site-title"><span id="tombstonesTitle">@Html.ActionLink("Tombstones.bb", "Index", "Home")</span>
+                    <span id="caribbeanFamilyHistoryTitle"><a href="http://www.caribbeanfamilyhistory.org">CaribeanFamilyHistory.org</a></span></p>
             </div>
             <div class="float-right">
                 <section id="login">
@@ -73,13 +74,6 @@
                 <p>&copy; @DateTime.Now.Year - Tombstones.bb</p>
             </div>
             <div class="float-right">
-                <ul id="social">
-                    <li><a href="https://www.facebook.com/pages/Tombstones-Website/110316705786089" class="facebook">Facebook</a></li>
-                    <li><a href="https://twitter.com/TombstonesWeb" class="twitter">Twitter</a></li>
-                    <li>
-                        <div class="g-plusone" data-annotation="none" data-width="300"></div>
-                    </li>
-                </ul>
             </div>
         </div>
     </footer>
@@ -92,6 +86,16 @@
             po.src = 'https://apis.google.com/js/plusone.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
         })();
+
+        $().ready(function () {
+            var oldTitle = $("#tombstonesTitle");
+            var newTitle = $("#caribbeanFamilyHistoryTitle");
+            newTitle.hide();
+            oldTitle.insertBefore("<del>");
+            oldTitle.insertAfter("</del>");
+            setTimeout(oldTitle.fadeTo(5000, 0.3), 10);
+            newTitle.fadeIn(5000);
+        });
     </script>
 
     @RenderSection("scripts", required: false)

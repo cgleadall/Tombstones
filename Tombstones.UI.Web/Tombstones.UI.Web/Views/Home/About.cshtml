@@ -7,38 +7,10 @@
     <section class="featured">
         <div class="content-wrapper">
 <hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>@ViewBag.Message</h2>
+    <h1>We have moved!</h1>
+    <h2>Our new home: <a href="http://www.caribbeanfamilyhistory.org">www.CaribbeanFamilyHistory.org</a></h2>
 </hgroup>
             </div>
 </section>
         }
 
-<article>
-    <p>
-        We have recorded tombstones inscriptions for sites in Antigua, Barbados and a 
-        few other smaller islands in the Caribbean. These tombstones inscriptions are 
-        not recorded in any other location.
-    </p>
-
-    <p>
-        We are all volunteers based across the world working to provide assistance in 
-        your family history research.
-    </p>
-
-</article>
-
-
-<aside>
-    <h3>Recent Activity</h3>
-    <ul>
-        @if (ViewBag.RecentNews != null)
-        {
-            foreach (var news in ViewBag.RecentNews)
-            {
-                <li>@news</li>
-            }
-        }
-        <li>Shell of new website launched</li>
-    </ul>
-</aside>

@@ -18,7 +18,7 @@ namespace Tombstones.UI.Web.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home";
-            ViewBag.SubTitle = "Where do you want to research?";
+            ViewBag.SubTitle = "We have moved!";
             ViewBag.Message = "News...";
 
             

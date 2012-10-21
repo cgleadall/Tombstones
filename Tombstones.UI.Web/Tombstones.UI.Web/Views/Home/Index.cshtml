@@ -2,46 +2,61 @@
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
+                
                 @if (ViewBag.SubTitle != null)
                 {
                     <h2>@ViewBag.SubTitle</h2>
                 }
             </hgroup>
 
-            <a href="@Tombstones.UI.Web.Areas.Tombstones.Controllers.HomeController.IndexLinkPath"><span class="button blue width75">Tombstones</span></a>
-            <a href="/" title="Not available yet..."><span class="button orange disabled width75">Burials</span></a>
-            <a href="@Tombstones.UI.Web.Controllers.QuakersController.IndexLinkPath" title="Search Quaker names in Barbados"><span class="button green width75">Quakers</span></a>
-            <a href="/" title="Not available yet..."><span class="button gray disabled width75">Plantations</span></a>
-            <a href="@Tombstones.UI.Web.Controllers.MinistersController.IndexLinkPath" title="Search Minister names in Barbados"><span class="button rosy width75">Ministers</span></a>
-
+            <article>
+                <h3>Our new home is: <a href="http://www.caribbeanfamilyhistory.org">www.CaribbeanFamilyHistory.org</a></h3>
+                <p>All of the searching that you were able to perform here has been replicated on 
+                    <a href="http://www.caribbeanfamilyhistory.org">www.CaribbeanFamilyHistory.org</a>. In fact there are more
+                    features available there.
+                </p>
+                <p><strong>Why did we move?</strong> With the location change we decided that it would be best to combine
+                    our multiple websites into one. As you know we had quite a few websites all running with different technologies
+                    which made for a management nightmare. When you are adding new sites and features there is little time to go back and 
+                    consolidate. That is, until something forces you to. That 'something' just happened.
+                </p>
+                <p>We looked at the websites and databases that we were running and realized that 
+                    <a href="http://www.tombstones.bb">www.tombstones.bb</a> was no longer an accurate portrayal of the information
+                    contained here. If all the websites were going to be brought together a new domain name was in order.
+                </p>
+                <p>That new name is <strong><a href="http://www.caribbeanfamilyhistory.org">www.CaribbeanFamilyHistory.org</a></strong>.
+                </p>
+                <p><strong>Why a '.org' domain name?</strong> We strongly believe that this genealogical research should be available to all
+                    free of charge. We felt that a '.com' domain name inaccurately implies that we are a commercial business. We cannot
+                    use a country specific domain name, '.bb', as the information includes other Caribbean islands and therefore misrepresents 
+                    our scope. This left us with '.org', an organization.
+                </p>
+            </article>
         </div>
     </section>
 
 }
 
-<aside>
-    <h2>@ViewBag.Message</h2>
-    <p>Ministers of Barbados is now available.</p>
-    <p>The Quakers list is now available for searching.</p>
-    <p>
-        We have recently moved, geographic locations and web hosting locations.
-    </p>
-    <p>
-        As you can see the site is in the process of being re-designed. This means that not all 
-                functionality or datasets are avaliable. We are working to get this information back online.
-    </p>
-
-</aside>
 
 <h3>We suggest the following:</h3>
 <ol class="round">
     <li class="one">
-        <h5>Check back often</h5>
+        <h5>Update your bookmarks for the following sites:</h5>
+        <ul>
+            <li>www.tombstones.bb</li>
+            <li>compensations.tombstones.bb</li>
+            <li>www.plantations.bb</li>
+            <li>compensations.plantations.bb</li>
+
+        </ul>
         While we are updating our site new features and datasets will be added frequently.
     </li>
     <li class="two">
-        <h5>Don't fret.</h5>
-        We will make a recovery...</li>
+        <h5>We have new Social coordinates</h5>
+        <span class="social">
+         <a href="https://www.facebook.com/pages/Caribbean-Family-History/493376417348462" title="Facebook"><img src="http://www.caribbeanfamilyhistory.org/Images/vintage_stamp_icon_pack/facebook.png" height="32" width="32" alt="Facebook"/></a>
+                    <a href="https://twitter.com/CaribFamHistory" title="Twitter"><img src="http://www.caribbeanfamilyhistory.org/Images/vintage_stamp_icon_pack/twitter.png" height="32" width="32" alt="Twitter"/></a>
+                    <a href="mailto:admin@caribbeanfamilyhistory.org" title="admin@caribbeanfamilyhistory.org"><img src="http://www.caribbeanfamilyhistory.org/Images/vintage_stamp_icon_pack/mail.png" height="32" width="32" alt="admin@caribbeanfamilyhistory.org"/></a><br/>
+                    <span class="small"><a href="mailto:admin@caribbeanfamilyhistory.org" title="admin@caribbeanfamilyhistory.org">admin@caribbeanfamilyhistory.org</a></span>            </span></li>
 </ol>
 
